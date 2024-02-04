@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import Form from '@components/Form'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -9,6 +9,10 @@ const EditPrompt = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const promptId = searchParams.get('id')
+
+  // const promptId = router.query.id
+  // const searchParams = new URLSearchParams(location.search);
+  // const promptId = searchParams.get('id')
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -43,15 +47,13 @@ const EditPrompt = () => {
 
   useEffect(() => {
     const getPromptDetails = async () => {
-        const res = await fetch(`/api/prompt/${promptId}`)
-        const data = await res.json();
+      const res = await fetch(`/api/prompt/${promptId}`)
+      const data = await res.json();
 
-        setPost({
-            prompt: data.prompt,
-            tag: data.tag
-        })
-
-        console.log(data);
+      setPost({
+          prompt: data.prompt,
+          tag: data.tag
+      })
     }
 
     if (promptId) getPromptDetails()
@@ -68,4 +70,12 @@ const EditPrompt = () => {
   )
 }
 
-export default EditPrompt
+const UpdatePrompt = () => {
+  return (
+    <Suspense>
+      <EditPrompt />
+    </Suspense>
+  )
+}
+
+export default UpdatePrompt
