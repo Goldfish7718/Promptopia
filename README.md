@@ -14,6 +14,10 @@ npm run dev
 
 And click the link provided in the terminal.
 
+## Deployment 🌐
+
+- Promptopia is currently available [here](https://promptopia-9qqz.onrender.com/)
+
 ## Contact 🔗
 
 - For any questions, please contact me on my email: [tejasnanoti2@gmail.com](mailto:tejasnanoti2@gmail.com)
